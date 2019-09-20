@@ -17,7 +17,6 @@ let lng = 0;
 
 
 
-
 function Locations(searchQuery, geoDataResults) {
   this.searchQuery = searchQuery;
   this.formattedQuery = geoDataResults.formatted_address;
@@ -42,6 +41,19 @@ function Event(eventBriteStuff) {
   this.event_date = new Date(eventBriteStuff.start.local).toDateString();
   this.summary = eventBriteStuff.summary;
 }
+
+
+function yelp(eventBriteStuff) {
+  this.link = eventBriteStuff.url;
+  this.name = eventBriteStuff.name.text;
+  this.event_date = new Date(eventBriteStuff.start.local).toDateString();
+  this.summary = eventBriteStuff.summary;
+}
+
+
+
+
+
 
 
 app.get('/location', (request, response) => {
@@ -99,6 +111,27 @@ app.get('/events', (request, response) => {
     errHandler(error, response);
   }
 });
+
+
+app.get('/movie', (request, response) => {
+  try {
+    let requestedCity = request.query.data;
+    let movieURL = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&language=en-US&query=${requestedCity}&page=1&include_adult=false`;
+    superagent.get(movieURL)
+      .end((movieURL) => {
+        console.log(requestedCity);
+        response.status(200).send(requestedCity);
+      })
+  } catch (error) {
+    errHandler(error, response);
+  }
+});
+
+
+
+
+
+
 
 function makeWeather(weatherText) {
   return weatherText.daily.data.map(day => new Weather(day));

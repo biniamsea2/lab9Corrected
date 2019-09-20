@@ -2,7 +2,7 @@
 
 # City Explorer
 
-**Author**: Chris Cummings,Darrik Puetz & Chris "Chedda" Ceder, Biniam Tesfamariam, Enrique rivera
+**Author**: Chris Cummings,Darrik Puetz & Chris "Chedda" Ceder, Biniam Tesfamariam, Enrique rivera, corey marchand
 **Version**: 1.0.1 (increment the patch/fix version number if you make more commits past your first submission)
 
 ## Overview
